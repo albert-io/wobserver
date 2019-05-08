@@ -74,7 +74,10 @@ defmodule Wobserver.Application do
       dispatch: [
         {:_,
          [
-           {"/ws", Wobserver.Web.Client, []},
+          # :cowboy_websocket_handler behaviour is currently not configured properly.
+          # Disabling websocket connection attempts as it currently always falls back to
+          # an API request strategy
+           # {"/ws", Wobserver.Web.Client, []},
            {:_, Cowboy.Handler, {Wobserver.Web.Router, []}}
          ]}
       ]
